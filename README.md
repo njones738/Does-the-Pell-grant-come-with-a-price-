@@ -1,56 +1,39 @@
 # Personal data projects
 
-Use this template repo for your personal data projects. Would you please use the following format for your repository? Please name your repository in your personal space using the following naming structure `[title]-[lastname]-[languagesused]`.  You will then complete a pull request to move your personal data projects into our organization.
+This project is a continuation of my project ["Access to Higher Education"](https://github.com/njones738/Access-to-Higher-Education). 
 
-- __Project Purpose:__ Take one to two paragraphs to explain your goals.  Why did you use this data? What skills are you going to demonstrate? Did you do this work for a client? 
-- __Tools used:__ Provide an overview of the programming languages and packages you leveraged for this work.  You could provide links to the pertinent reading material that you leveraged to complete the job. Provide links to your final scripts stored in your repository.
-- __Results:__ This is your conclusion.  Explain why your work matters.  How could others use it?  What are your next steps? Show some key findings.
+- __Project Purpose:__  
+This project seeks to further understand the typcial amount of debt accumulated by an independent student and dependent student. The Parent PLUS loan system is suppose to be used to allow the parents of dependent students to take on the debt that their child would otherwise have to take on. Since the PLUS loan system is only for dependent students, this researcher summed the amount typically accumulated by a dependent student with the amount typically accumulated by a parent for each school. In this researchers experience, the PLUS loan system does not check to see if the parent is committing to their obligation to utilize the loan they received on the financial needs of their child. In the situation where the parent does not commit to their obligation, the students ability to acquire the needed financial support is greatly effected and may lead to the student not completing their education and not able to pay back the debt they accumulated while attending school. A spatial analysis was conducted to see if there is a relationship between the typical amount of debt an independent student and a dependent student for each state.
+
+- __Tools used:__   
+R was used with VScode to conduct parametric and nonparametric tests, clean and manipulate parameters, and visualize the data. Packages such as tidyverse, tidycensus, tigris, sf, sp, ggplot, ggh4x, magrittr, jmuoutliers, perms, and stats were used.
+
+- __Results:__  
+It was found that for every $1,000 an independent student accumulates, a dependent student accummulates $1,500. These finding varies by state and future projects will study states like Utah and West Virginia where the relationship between the two debt amounts are near 1:1.
+
 
 ## Folder structure
 
 ```
 - readme.md
-- scripts
----- readme.md (short description of each script)
----- data_munge.R
----- data_munge.py
----- eda.R
----- model.py
-- data (less than 100 Mb)
----- readme.md (links to data larger than 100 Mb and data details.)
----- crimes.csv
----- visits.json
+- data
+---- csc_dict.csv
+---- MERGED2018_19_PP.csv
+---- RANKING_DATA.csv
+---- state_fp_codes.csv
 - documents
----- readme.md (notes while doing your project)
----- mlmethod.pdf
----- api_guide.pdf
+---- JONES.AnalyticsDay.FALL21-poster.pptx
+---- Notebook.docx
+- images
+- scripts
+---- csc_preprocess.r
+---- MASTER_FILE.r
+---- UnitedState_spatialGraphic.r
 ```
-
-## Writing about data science
-
-[Thusan's article on how writing about data science is not easy](https://towardsdatascience.com/lets-admit-it-writing-about-data-science-is-not-easy-37a376777d36) could be helpful as you document your project and skills.
 
 ## Data sources
 
-You don't need to make these projects complicated. These projects are built to show your work using the skills you have developed during the course. I would make sure that these are presentable in your Github space. You want to demonstrate your creativity. You could use the following links to find a new data set. 
-
-- [FiveThirtyEight](https://github.com/fivethirtyeight/data)
-- [TidyTuesday](https://github.com/rfordatascience/tidytuesday)
-- [WorkoutWednesday](http://www.workout-wednesday.com/)
-- [Kaggle](https://www.kaggle.com/datasets)
-- [data.world](https://data.world/search?context=community&entryTypeLabel=dataset&q=free+data&type=all)
-
-## Github pages
-
-It would help if you took the time to publish your repo for easier viewing of the files.  Please follow the directions at [Github pages](https://pages.github.com/) to build your pages footprint on the internet.
-
-## Questions
-
-### Is the expectation of our personal projects similar to that of the class projects we are completing?
-
-Yes & No. Here are a few points to highlight the comparison
-
-1. Three different data sets is the main criteria. Hopefully different challenges to your skills and the data can be in the same area for all three if you desire.
-2. You can choose the language. Please choose based on where you want employment.
-3. We don't get much into the story telling with our class projects.  But, I would hope you tell a story that includes some graphs and analysis.
-4. Think of these as sales pitches for future employment. Your personal projects should be in your own Github space.
+### [The CollegeScorecard dataset](https://collegescorecard.ed.gov/data/)
+### [The CollegeScorecard data Dictionary](https://data.ed.gov/dataset/college-scorecard-all-data-files-through-6-2020/resources?resource=658b5b83-ac9f-4e41-913e-9ba9411d7967)
+### [Can the parents of independent students take out a PLUS loan?](https://studentloanhero.com/featured/parent-plus-loan-pay-college/)
+ * No, the parents of independent students cannot take out a PLUS loan.

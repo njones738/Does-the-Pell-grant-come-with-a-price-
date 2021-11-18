@@ -43,8 +43,8 @@ us_counties <- st_transform(us_counties, crs = 4326)
 # us_school <- st_transform(us_school, crs = 4326)
 # us_zips <- st_transform(us_zips, crs = 4326)
 
-csc_data <- csc %>%
-                select("UNITID", "INSTNM", "LATITUDE", "LONGITUDE",
+csc_data2 <- csc_data %>%
+                select("UNITID", "INSTNM", "LATITUDE", "LONGITUDE", "DEPPLUS_DEBT_MDN",
                        "CITY", STUSPS = "STABBR", "REGION", "ZIP", "PELLCAT", "PCTPELL",
                        "ST_FIPS", "LOCALE", "OPEFLAG", "OPENADMP",
                        "CURROPER", "MAIN", "CONTROL", "ICLEVEL",
@@ -68,8 +68,75 @@ csc_data <- csc %>%
                        "PLUS_DEBT_INST_NOPELL_MD", "PLUS_DEBT_INST_STAFFTHIS_N",
                        "PLUS_DEBT_INST_STAFFTHIS_MD", "PLUS_DEBT_INST_NOSTAFFTHIS_N",  # nolint
                        "PLUS_DEBT_INST_NOSTAFFTHIS_MD")
-csc_sf <- st_as_sf(csc_data,
+csc_sf <- st_as_sf(csc_data2,
                    coords = c("LONGITUDE", "LATITUDE"), crs = 4326)
+
+state_list <- csc_data2 %>%
+    group_by(STUSPS) %>%
+    summarise(count = n()) %>%
+    select(STUSPS) %>% 
+    as.list()
+
+slopes <- tibble()
+AK <- c("AK",summary(lm(DEPPLUS_DEBT_MDN ~ IND_DEBT_MDN, csc_data2 %>% filter(STUSPS == "AK")))$coefficients[2])
+AL <- c("AL",summary(lm(DEPPLUS_DEBT_MDN ~ IND_DEBT_MDN, csc_data2 %>% filter(STUSPS == "AL")))$coefficients[2])
+AR <- c("AR",summary(lm(DEPPLUS_DEBT_MDN ~ IND_DEBT_MDN, csc_data2 %>% filter(STUSPS == "AR")))$coefficients[2])
+AZ <- c("AZ",summary(lm(DEPPLUS_DEBT_MDN ~ IND_DEBT_MDN, csc_data2 %>% filter(STUSPS == "AZ")))$coefficients[2])
+CA <- c("CA",summary(lm(DEPPLUS_DEBT_MDN ~ IND_DEBT_MDN, csc_data2 %>% filter(STUSPS == "CA")))$coefficients[2])
+CO <- c("CO",summary(lm(DEPPLUS_DEBT_MDN ~ IND_DEBT_MDN, csc_data2 %>% filter(STUSPS == "CO")))$coefficients[2])
+CT <- c("CT",summary(lm(DEPPLUS_DEBT_MDN ~ IND_DEBT_MDN, csc_data2 %>% filter(STUSPS == "CT")))$coefficients[2])
+DC <- c("DC",summary(lm(DEPPLUS_DEBT_MDN ~ IND_DEBT_MDN, csc_data2 %>% filter(STUSPS == "DC")))$coefficients[2])
+DE <- c("DE",summary(lm(DEPPLUS_DEBT_MDN ~ IND_DEBT_MDN, csc_data2 %>% filter(STUSPS == "DE")))$coefficients[2])
+FL <- c("FL",summary(lm(DEPPLUS_DEBT_MDN ~ IND_DEBT_MDN, csc_data2 %>% filter(STUSPS == "FL")))$coefficients[2])
+GA <- c("GA",summary(lm(DEPPLUS_DEBT_MDN ~ IND_DEBT_MDN, csc_data2 %>% filter(STUSPS == "GA")))$coefficients[2])
+HI <- c("HI",summary(lm(DEPPLUS_DEBT_MDN ~ IND_DEBT_MDN, csc_data2 %>% filter(STUSPS == "HI")))$coefficients[2])
+IA <- c("IA",summary(lm(DEPPLUS_DEBT_MDN ~ IND_DEBT_MDN, csc_data2 %>% filter(STUSPS == "IA")))$coefficients[2])
+ID <- c("ID",summary(lm(DEPPLUS_DEBT_MDN ~ IND_DEBT_MDN, csc_data2 %>% filter(STUSPS == "ID")))$coefficients[2])
+IL <- c("IL",summary(lm(DEPPLUS_DEBT_MDN ~ IND_DEBT_MDN, csc_data2 %>% filter(STUSPS == "IL")))$coefficients[2])
+IN <- c("IN",summary(lm(DEPPLUS_DEBT_MDN ~ IND_DEBT_MDN, csc_data2 %>% filter(STUSPS == "IN")))$coefficients[2])
+KS <- c("KS",summary(lm(DEPPLUS_DEBT_MDN ~ IND_DEBT_MDN, csc_data2 %>% filter(STUSPS == "KS")))$coefficients[2])
+KY <- c("KY",summary(lm(DEPPLUS_DEBT_MDN ~ IND_DEBT_MDN, csc_data2 %>% filter(STUSPS == "KY")))$coefficients[2])
+LA <- c("LA",summary(lm(DEPPLUS_DEBT_MDN ~ IND_DEBT_MDN, csc_data2 %>% filter(STUSPS == "LA")))$coefficients[2])
+MA <- c("MA",summary(lm(DEPPLUS_DEBT_MDN ~ IND_DEBT_MDN, csc_data2 %>% filter(STUSPS == "MA")))$coefficients[2])
+MD <- c("MD",summary(lm(DEPPLUS_DEBT_MDN ~ IND_DEBT_MDN, csc_data2 %>% filter(STUSPS == "MD")))$coefficients[2])
+ME <- c("ME",summary(lm(DEPPLUS_DEBT_MDN ~ IND_DEBT_MDN, csc_data2 %>% filter(STUSPS == "ME")))$coefficients[2])
+MI <- c("MI",summary(lm(DEPPLUS_DEBT_MDN ~ IND_DEBT_MDN, csc_data2 %>% filter(STUSPS == "MI")))$coefficients[2])
+MN <- c("MN",summary(lm(DEPPLUS_DEBT_MDN ~ IND_DEBT_MDN, csc_data2 %>% filter(STUSPS == "MN")))$coefficients[2])
+MO <- c("MO",summary(lm(DEPPLUS_DEBT_MDN ~ IND_DEBT_MDN, csc_data2 %>% filter(STUSPS == "MO")))$coefficients[2])
+MS <- c("MS",summary(lm(DEPPLUS_DEBT_MDN ~ IND_DEBT_MDN, csc_data2 %>% filter(STUSPS == "MS")))$coefficients[2])
+MT <- c("MT",summary(lm(DEPPLUS_DEBT_MDN ~ IND_DEBT_MDN, csc_data2 %>% filter(STUSPS == "MT")))$coefficients[2])
+NC <- c("NC",summary(lm(DEPPLUS_DEBT_MDN ~ IND_DEBT_MDN, csc_data2 %>% filter(STUSPS == "NC")))$coefficients[2])
+ND <- c("ND",summary(lm(DEPPLUS_DEBT_MDN ~ IND_DEBT_MDN, csc_data2 %>% filter(STUSPS == "ND")))$coefficients[2])
+NE <- c("NE",summary(lm(DEPPLUS_DEBT_MDN ~ IND_DEBT_MDN, csc_data2 %>% filter(STUSPS == "NE")))$coefficients[2])
+NH <- c("NH",summary(lm(DEPPLUS_DEBT_MDN ~ IND_DEBT_MDN, csc_data2 %>% filter(STUSPS == "NH")))$coefficients[2])
+NJ <- c("NJ",summary(lm(DEPPLUS_DEBT_MDN ~ IND_DEBT_MDN, csc_data2 %>% filter(STUSPS == "NJ")))$coefficients[2])
+NM <- c("NM",summary(lm(DEPPLUS_DEBT_MDN ~ IND_DEBT_MDN, csc_data2 %>% filter(STUSPS == "NM")))$coefficients[2])
+NV <- c("NV",summary(lm(DEPPLUS_DEBT_MDN ~ IND_DEBT_MDN, csc_data2 %>% filter(STUSPS == "NV")))$coefficients[2])
+NY <- c("NY",summary(lm(DEPPLUS_DEBT_MDN ~ IND_DEBT_MDN, csc_data2 %>% filter(STUSPS == "NY")))$coefficients[2])
+OH <- c("OH",summary(lm(DEPPLUS_DEBT_MDN ~ IND_DEBT_MDN, csc_data2 %>% filter(STUSPS == "OH")))$coefficients[2])
+OK <- c("OK",summary(lm(DEPPLUS_DEBT_MDN ~ IND_DEBT_MDN, csc_data2 %>% filter(STUSPS == "OK")))$coefficients[2])
+OR <- c("OR",summary(lm(DEPPLUS_DEBT_MDN ~ IND_DEBT_MDN, csc_data2 %>% filter(STUSPS == "OR")))$coefficients[2])
+PA <- c("PA",summary(lm(DEPPLUS_DEBT_MDN ~ IND_DEBT_MDN, csc_data2 %>% filter(STUSPS == "PA")))$coefficients[2])
+RI <- c("RI",summary(lm(DEPPLUS_DEBT_MDN ~ IND_DEBT_MDN, csc_data2 %>% filter(STUSPS == "RI")))$coefficients[2])
+SC <- c("SC",summary(lm(DEPPLUS_DEBT_MDN ~ IND_DEBT_MDN, csc_data2 %>% filter(STUSPS == "SC")))$coefficients[2])
+SD <- c("SD",summary(lm(DEPPLUS_DEBT_MDN ~ IND_DEBT_MDN, csc_data2 %>% filter(STUSPS == "SD")))$coefficients[2])
+TN <- c("TN",summary(lm(DEPPLUS_DEBT_MDN ~ IND_DEBT_MDN, csc_data2 %>% filter(STUSPS == "TN")))$coefficients[2])
+TX <- c("TX",summary(lm(DEPPLUS_DEBT_MDN ~ IND_DEBT_MDN, csc_data2 %>% filter(STUSPS == "TX")))$coefficients[2])
+UT <- c("UT",summary(lm(DEPPLUS_DEBT_MDN ~ IND_DEBT_MDN, csc_data2 %>% filter(STUSPS == "UT")))$coefficients[2])
+VA <- c("VA",summary(lm(DEPPLUS_DEBT_MDN ~ IND_DEBT_MDN, csc_data2 %>% filter(STUSPS == "VA")))$coefficients[2])
+VT <- c("VT",summary(lm(DEPPLUS_DEBT_MDN ~ IND_DEBT_MDN, csc_data2 %>% filter(STUSPS == "VT")))$coefficients[2])
+WA <- c("WA",summary(lm(DEPPLUS_DEBT_MDN ~ IND_DEBT_MDN, csc_data2 %>% filter(STUSPS == "WA")))$coefficients[2])
+WI <- c("WI",summary(lm(DEPPLUS_DEBT_MDN ~ IND_DEBT_MDN, csc_data2 %>% filter(STUSPS == "WI")))$coefficients[2])
+WV <- c("WV",summary(lm(DEPPLUS_DEBT_MDN ~ IND_DEBT_MDN, csc_data2 %>% filter(STUSPS == "WV")))$coefficients[2])
+WY <- c("WY",summary(lm(DEPPLUS_DEBT_MDN ~ IND_DEBT_MDN, csc_data2 %>% filter(STUSPS == "WY")))$coefficients[2])
+slopes <- tibble(AK, AL, AR, AZ, CA, CO, CT, DC, DE, FL, GA, HI, IA, ID, IL, IN, KS, KY, LA, MA, MD, ME, MI, MN,
+                 MO, MS, MT, NC, ND, NE, NH, NJ, NM, NV, NY, OH, OK, OR, PA, RI, SC, SD, TN, TX, UT, VA, VT, WA, 
+                 WI, WV, WY) %>%
+          slice(2) %>% 
+          pivot_longer(everything(), names_to = "STABBR", values_to = "slope")
+
+slopes %>% arrange(slope) %>% view()
+
 
 # csc_dict <- read_csv("D:/CURRENT/GITHUB/Projects for Special Topics in Statistics - STAT4490.FALL21/Personal_Project_CollegeSc_SafeGaurd/csc_dict.csv") # nolint
 
@@ -103,7 +170,7 @@ csc_sf <- st_as_sf(csc_data,
     
 # subdict_csc %>% view()
 
-debt_state <- csc_data %>%
+debt_state <- csc_data2 %>%
     group_by(STUSPS) %>%
     summarise(PCTPELL = median(PCTPELL, na.rm =T),
               DEBT_MDN = median(DEBT_MDN, na.rm = T),
@@ -135,7 +202,7 @@ debt_state <- csc_data %>%
               PLUS_DEBT_INST_NOPELL_N = sum(PLUS_DEBT_INST_NOPELL_N, na.rm = T) #, # nolint
              )
 
-count_state <- csc_data %>%
+count_state <- csc_data2 %>%
                     dplyr::group_by(STUSPS) %>%
                     summarise(count = n())
 #us_states %<>% mutate(lon = as.numeric(us_states$INTPTLON), lat = as.numeric(us_states$INTPTLAT)) %>% select(-INTPTLON, -INTPTLAT)
@@ -242,7 +309,7 @@ states2 <- states %>%
             filter(!is.na(PELLCAT)) %>%
             select(-PELLCAT)
 
-color = on_brand_Palette[1:2]
+color <- on_brand_Palette[1:2]
 
 ggplot(states %>% filter(!is.na(PELLCAT)),
        aes(x = IND_DEBT_MDN,
@@ -321,4 +388,3 @@ ggsave("images/usa_debt2a.png", width = 5120, height = 2160, units = "px")
 #     gt::tab_options(
 #         table.font.names = "Montserrat"
 #     )
-
