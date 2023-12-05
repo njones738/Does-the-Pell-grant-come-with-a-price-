@@ -27,12 +27,14 @@ The CollegeScorecard dataset includes measurements of the following parameters f
 Combining the latitude and longitude in the CollegeScorecard dataset with the United States Census shapefiles, I created a United States map for my analysis of the relationship between the typical amount of debt an independent student receives and the typical amount of debt a dependent student with their parents' debt receives while attending school.
 
 - __Tools used:__   
+
 * R
 * Python
 * Github
 * VSCode
 
 - __Results:__  
+
 * **Independent and Dependent Student Debt Vertical Stratified Bar Chart (Figure 1):** The length of the gold bar represents the median independent student debt for each state. The length of the grey bar represents the median dependent student debt with their parents for each state. The length of the gold bar is superimposed over the grey bar and both bar lengths start from zero. Dependent students with their parents accumulate more debt than independent students across all states. For all institutions in the dataset, the vertical red line corresponds to the median debt for independent students as they exit the institution they attended. The blue line corresponds to the median debt for dependent students and their parents as they exit the institutions. 
 * **Independent and Dependent Student Debt U.S. Map (Figure 2):** The relationship between the typical amount of debt a dependent student receives with their parents (Y) and the typical amount of debt an independent student receives (X) is displayed for each state in blue. In comparison, the black line is the relationship for the whole dataset including all states if the two debt amounts were equal. The black line and the grey background of all datapoints in the set standardize the size of the graph for all states. 
 * **Student Dropout Rate Stratified by combinations of Control and Majority/Minority Pell Status (Figure 3):** The dropout rate for 4-year minority Pell institutions is much lower (16%) than other combinations (42%, 36%, 36%). Notably, 2-year minority Pell institutions have the highest dropout rate of all (42%). One source suggested that students at 2-year institutions do not realize that they can use the Pell grant for a 2-year institution. Possibly, by informing their students about the Pell grant opportunity, some of the minority Pell institutions may be able to switch to the majority Pell classification and lower their dropout rate.
