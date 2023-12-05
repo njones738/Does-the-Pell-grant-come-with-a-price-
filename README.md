@@ -2,7 +2,7 @@
 
 This project is a continuation of my project ["Access to Higher Education"](https://github.com/njones738/Access-to-Higher-Education). 
 
-__Project Purpose:__  
+## __Project Purpose:__  
 
 The goal of this research is to use the CollegeScorecard dataset to determine which post-secondary schools and states are helping low-income students succeed. This success is measured by the institution’s student graduation rate, loan default rate two years after graduation, dropout rate, and the typical amount of debt acquired by an independent student or a dependent student with their parent as they exit the institution, either by graduating or dropping out. The proportion of students still trying to finish their degree 8 years after their first enrollment is 0.4%, I am one of those 0.4%. I had to learn the implications of the dependency status the hard way. I had to find a way to attend school, even when I was homeless, had medical issues, and could not afford food. I had to learn financial and life lessons that are usually taught by the family. 
 
