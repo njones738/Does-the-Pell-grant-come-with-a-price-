@@ -105,6 +105,12 @@ ggplot(GCETU_rate, aes(x = OMENRUP_ALL,
 ggsave("images/dropoutrateby2yrVS4yr.png",
        width = 5120, height = 2160, units = "px")
 
+mu3 <- plyr::ddply(GCETU_rate,
+                   c("PELLCAT2", "ICLEVEL2", "CONTROL2"),
+                   summarise,
+                   grp.median=median(OMENRUP_ALL,
+                                     na.rm = T))
+
 ###############################################
 ###############################################
 ###    Figure 4                             ###
@@ -348,10 +354,8 @@ ggplot(CSC18_GRAD, aes(x = BBRR2_FED_UG_DFLT,
                 geom = "text",
                 vjust = -0.8) +
        theme_bw()
-ggsave("images/GRAD_CATvsDEFAULT",
+ggsave("images/GRAD_CATvsDEFAULT.png",
        width = 5120, height = 2160, units = "px")
-
-
 ###############################################
 ###############################################
 ###    Figure 7                             ###
@@ -422,3 +426,8 @@ ggplot(UGLOAN2yr,
     theme_bw()
 ggsave("images/defaultrate2yrVS4yr.png",
        width = 5120, height = 2160, units = "px")
+
+mu3 <- plyr::ddply(UGLOAN2yr,
+                   c("PELLCAT2", "ICLEVEL2", "CONTROL2"),
+                   summarise,
+                   grp.median = median(BBRR2_FED_UG_DFLT, na.rm = T))

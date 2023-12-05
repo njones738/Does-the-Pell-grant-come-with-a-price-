@@ -2,7 +2,8 @@
 
 This project is a continuation of my project ["Access to Higher Education"](https://github.com/njones738/Access-to-Higher-Education). 
 
-- __Project Purpose:__  
+__Project Purpose:__  
+
 The goal of this research is to use the CollegeScorecard dataset to determine which post-secondary schools and states are helping low-income students succeed. This success is measured by the institution’s student graduation rate, loan default rate two years after graduation, dropout rate, and the typical amount of debt acquired by an independent student or a dependent student with their parent as they exit the institution, either by graduating or dropping out. The proportion of students still trying to finish their degree 8 years after their first enrollment is 0.4%, I am one of those 0.4%. I had to learn the implications of the dependency status the hard way. I had to find a way to attend school, even when I was homeless, had medical issues, and could not afford food. I had to learn financial and life lessons that are usually taught by the family. 
 
 I propose that an educational institution provide mandatory training on the implications of dependent and independent status, as to whether the student will receive any of the parental loans that are taken out in their behalf. In addition, 4-year institutions, which have the majority of their student populations receiving a Pell grant, have lower graduation rates and higher dropout rates, resulting in higher loan default rates 2 years after the student leaves the institution. Educational institutions need to take their stewardship of Pell grant recipients seriously by providing coaching that will help them with academic success—skills that a high-income family generally provide for their children. By meeting the needs of Pell grant recipients, they will better meet the needs of all students at their institutions.

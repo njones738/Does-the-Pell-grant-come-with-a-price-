@@ -26,7 +26,7 @@ see_missing <- function(df) {
                          names_to = "Variable", values_to = "Count")
                             }
 
-fip_pth <- "data/state_fp_codes.csv" # nolint
+fip_pth <- "C:/Code/GITHUB/csc/Does-the-Pell-grant-come-with-a-price-/data/state_fp_codes.csv" # nolint
 st_fp <- read_csv(fip_pth)
 
 desired_fips <- st_fp %>%
@@ -34,7 +34,7 @@ desired_fips <- st_fp %>%
                     rename(region = "Postal Code")
 
 
-csc <- read_csv("data/MERGED2018_19_PP.csv",
+csc <- read_csv("C:/Code/GITHUB/csc/Does-the-Pell-grant-come-with-a-price-/data/MERGED2018_19_PP.csv",
                 na = c("", "NA", "NaN", "NULL", "Privacy Suppressed")) %>%
             filter(STABBR %in% desired_fips$region) %>%
             mutate(PELLCAT = case_when(PCTPELL < .5 ~ 0,
@@ -1173,3 +1173,43 @@ debt_var <- csc_data %>%
 # rbind(dGCETU_rate, dUGLOAN2yr, dUGCOMPloan2yrs, dUGNOCOMPloan2yrs, ddebt_var) %>% view()
 
 ################################
+
+csc_data %>% filter(INSTNM == "Harvard University") %>%
+       select(INSTNM, PCTPELL, DEPPLUS_DEBT_MDN, IND_DEBT_MDN) %>%
+       view()
+
+csc_data %>% filter(INSTNM == "Kennesaw State University") %>%
+       select(INSTNM, PCTPELL, 
+              DEPPLUS_DEBT_MDN, IND_DEBT_MDN, 
+              COSTT4_A, TUITIONFEE_IN, 
+             ) %>%
+       view()
+
+names(csc_data)
+
+csc_data %>% 
+       group_by(STABBR) %>%
+       select(INSTNM, PCTPELL, DEPPLUS_DEBT_MDN, IND_DEBT_MDN,
+              DEP_DEBT_MDN, PLUS_DEBT_INST_MD, 
+              PLUS_DEBT_INST_PELL_MD, PLUS_DEBT_INST_NOPELL_MD,
+              cost
+              
+             ) %>%
+       summarise(PCTPELL = median(PCTPELL, na.rm = T),
+                 IND_DEBT_MDN = median(IND_DEBT_MDN, na.rm = T),
+                 DEP_DEBT_MDN = median(DEP_DEBT_MDN, na.rm = T),
+                 DEPPLUS_DEBT_MDN = median(DEPPLUS_DEBT_MDN, na.rm = T),
+                 PLUS_DEBT_INST_MD = median(PLUS_DEBT_INST_MD, na.rm = T),
+                 PLUS_DEBT_INST_PELL_MD = median(PLUS_DEBT_INST_PELL_MD, na.rm = T),
+                 PLUS_DEBT_INST_NOPELL_MD = median(PLUS_DEBT_INST_NOPELL_MD, na.rm = T)
+                 ) %>%
+       view()
+
+
+ggplot(csc_data, aes(x = IND_DEBT_MDN, y = DEPPLUS_DEBT_MDN)) +
+       geom_abline(slope = 1, intercept = 0) +
+       geom_point(aes(fill = as.character(PELLCAT)), show.legend = F) +
+       geom_smooth(method = "lm", col = "blue", se = F) +
+       scale_fill_manual(values = c("#FEC52E", "#B0B3B2"),
+                         labels = c("0", "1")) +
+       theme_bw()
